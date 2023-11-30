@@ -1,0 +1,474 @@
+CREATE DATABASE Prova
+USE Prova
+-- Criação da tabela Paciente
+CREATE TABLE Paciente (
+    ID_Paciente INT IDENTITY(1,1) PRIMARY KEY,
+    Nome VARCHAR(60),
+    DataNascimento DATE,
+    Genero VARCHAR(60),
+    Rua VARCHAR(60),
+    Cidade VARCHAR(60),
+    Estado VARCHAR(60),
+    NumeroProntuario INT,
+    CONSTRAINT UQ_NumeroProntuario UNIQUE (NumeroProntuario)
+);
+-- Criação da tabela Medico
+CREATE TABLE Medico (
+    ID_Medico INT IDENTITY(1,1) PRIMARY KEY,
+    Nome VARCHAR(60),
+    Especialidade VARCHAR(60),
+    CRM VARCHAR(60),
+    Telefone VARCHAR(60),
+    Email VARCHAR(60),
+    CONSTRAINT UQ_CRM UNIQUE (CRM)
+);
+-- Criação da tabela Consulta
+CREATE TABLE Consulta (
+    ID_Consulta INT IDENTITY(1,1) PRIMARY KEY,
+    DataHora DATETIME,
+    Status VARCHAR(60),
+    ID_Paciente INT,
+    ID_Medico INT,
+    FOREIGN KEY (ID_Paciente) REFERENCES Paciente(ID_Paciente),
+    FOREIGN KEY (ID_Medico) REFERENCES Medico(ID_Medico)
+);
+
+-- Criação da tabela Exame
+CREATE TABLE Exame (
+    ID_Exame INT IDENTITY(1,1) PRIMARY KEY,
+    TipoExame VARCHAR(60),
+    Resultado VARCHAR(60),
+    ID_Consulta INT UNIQUE,
+    FOREIGN KEY (ID_Consulta) REFERENCES Consulta(ID_Consulta)
+);
+
+-- Criação da tabela Setor
+CREATE TABLE Setor (
+    ID_Setor INT IDENTITY(1,1) PRIMARY KEY,
+    NomeSetor VARCHAR(60),
+    Descricao VARCHAR(60)
+);
+
+-- Tabela de associação Médico_Setor
+CREATE TABLE Medico_Setor (
+    ID_Medico INT,
+    ID_Setor INT,
+    PRIMARY KEY (ID_Medico, ID_Setor),
+    FOREIGN KEY (ID_Medico) REFERENCES Medico(ID_Medico),
+    FOREIGN KEY (ID_Setor) REFERENCES Setor(ID_Setor)
+);
+
+-- Tabela de associação Consulta_Setor
+CREATE TABLE Consulta_Setor (
+    ID_Consulta INT,
+    ID_Setor INT,
+    PRIMARY KEY (ID_Consulta, ID_Setor),
+    FOREIGN KEY (ID_Consulta) REFERENCES Consulta(ID_Consulta),
+    FOREIGN KEY (ID_Setor) REFERENCES Setor(ID_Setor)
+);
+-- Inserção de dados na tabela Paciente
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Ana Silva', '1990-05-15', 'Feminino', 'Rua Primavera', 'São Paulo', 'SP', 1001);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Carlos Santos', '1985-02-20', 'Masculino', 'Avenida das Flores', 'Rio de Janeiro', 'RJ', 1002);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Mariana Oliveira', '1998-08-10', 'Feminino', 'Rua dos Girassóis', 'Belo Horizonte', 'MG', 1003);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Rodrigo Silva', '1976-11-25', 'Masculino', 'Rua do Bosque', 'Curitiba', 'PR', 1018);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Juliana Oliveira', '1995-04-03', 'Feminino', 'Avenida dos Pássaros', 'Porto Alegre', 'RS', 1019);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Felipe Santos', '1980-07-18', 'Masculino', 'Rua das Águas', 'Recife', 'PE', 1020);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Laura Pereira', '1993-09-28', 'Feminino', 'Rua das Palmeiras', 'Fortaleza', 'CE', 1021);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Rafael Lima', '1987-06-12', 'Masculino', 'Alameda das Orquídeas', 'Salvador', 'BA', 1022);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Patrícia Costa', '1991-03-05', 'Feminino', 'Travessa das Oliveiras', 'Manaus', 'AM', 1023);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('César Oliveira', '1978-12-19', 'Masculino', 'Rua das Árvores', 'Porto Velho', 'RO', 1035);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Fernanda Mendes', '1994-02-14', 'Feminino', 'Avenida dos Ipês', 'Cuiabá', 'MT', 1036);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Lucas Souza', '1983-07-02', 'Masculino', 'Rua do Lago', 'Campo Grande', 'MS', 1037);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Isabela Santos', '1985-10-08', 'Feminino', 'Rua dos Girassóis', 'Recife', 'PE', 1038);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Vinícius Oliveira', '1990-04-25', 'Masculino', 'Alameda das Acácias', 'Florianópolis', 'SC', 1039);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Aline Pereira', '1988-08-15', 'Feminino', 'Rua das Rosas', 'Curitiba', 'PR', 1040);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Pedro Almeida', '1996-11-30', 'Masculino', 'Travessa das Bromélias', 'Goiânia', 'GO', 1046);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Beatriz Lima', '1982-01-18', 'Feminino', 'Avenida das Hortênsias', 'Palmas', 'TO', 1047);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Bruno Rocha', '1993-06-22', 'Masculino', 'Rua das Violetas', 'Boa Vista', 'RR', 1048);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Juliana Martins', '1984-09-12', 'Feminino', 'Alameda dos Cravos', 'Brasília', 'DF', 1049);
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('Roberta Simão', '1988-12-11', 'Feminino', 'Jorge Vitorino', 'Salvador', 'BA', 1076);
+-- Inserção de dados na tabela Medico
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Ana Oliveira', 'Ortopedia', '56789', '(21) 98765-4321', 'ana.oliveira@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Marcos Santos', 'Neurologia', '67890', '(91) 98765-4321', 'marcos.santos@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Sofia Costa', 'Cardiologia', '78901', '(11) 98765-4321', 'sofia.costa@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Lucas Lima', 'Ortopedia', '89012', '(41) 98765-4321', 'lucas.lima@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Isabela Santos', 'Neurologia', '12345', '(51) 98765-4321', 'isabela.santos@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Guilherme Costa', 'Cardiologia', '23456', '(61) 98765-4321', 'guilherme.costa@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Camila Lima', 'Ortopedia', '34567', '(71) 98765-4321', 'camila.lima@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Pedro Santos', 'Neurologia', '45678', '(81) 98765-4321', 'pedro.santos@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Lucas Oliveira', 'Ginecologia', '34569', '(61) 98765-4321', 'lucas.oliveira@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Isabela Santos', 'Dermatologia', '78903', '(71) 98765-4321', 'isabela.santos@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Guilherme Costa', 'Oftalmologia', '23457', '(81) 98765-4321', 'guilherme.costa@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Camila Lima', 'Ginecologia', '89015', '(31) 98765-4321', 'camila.lima@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Pedro Santos', 'Dermatologia', '45679', '(41) 98765-4321', 'pedro.santos@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Larissa Costa', 'Oftalmologia', '01234', '(51) 98765-4321', 'larissa.costa@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Carolina Silva', 'Cardiologia', '12346', '(11) 98765-4321', 'carolina.silva@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Roberto Santos', 'Ortopedia', '67892', '(21) 98765-4321', 'roberto.santos@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Marcela Oliveira', 'Pediatria', '54321', '(31) 98765-4321', 'marcela.oliveira@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Ricardo Costa', 'Cardiologia', '43210', '(81) 98765-4321', 'ricardo.costa@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dra. Fernanda Lima', 'Ortopedia', '98765', '(41) 98765-4321', 'fernanda.lima@example.com');
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. André Santos', 'Pediatria', '87654', '(51) 98765-4321', 'andre.santos@example.com');
+-- Inserindo valores na tabela Consulta
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-08-01 10:00:00', 'Confirmada', 5, 1);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-08-02 14:30:00', 'Realizada', 6, 3);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-08-03 09:15:00', 'Cancelada', 3, 2);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-08-20 16:45:00', 'Confirmada', 20, 5);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-08-21 11:30:00', 'Realizada', 4, 1);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-08-22 13:45:00', 'Confirmada', 5, 2);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-08-23 08:20:00', 'Cancelada', 6, 3);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-05 15:00:00', 'Confirmada', 20, 4);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-10 09:00:00', 'Confirmada', 8, 2);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-12 14:30:00', 'Realizada', 12, 5);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-15 10:45:00', 'Cancelada', 16, 1);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-18 11:00:00', 'Confirmada', 3, 6);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-20 15:30:00', 'Realizada', 7, 3);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-22 08:15:00', 'Cancelada', 11, 4);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-25 16:45:00', 'Confirmada', 15, 5);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-09-28 10:30:00', 'Realizada', 19, 2);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-10-01 14:00:00', 'Cancelada', 8, 3);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-10-04 11:15:00', 'Confirmada', 6, 4);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-10-08 13:20:00', 'Realizada', 10, 1);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-10-12 09:45:00', 'Cancelada', 14, 6);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-10-02 10:15:00', 'Confirmada', 8, 5);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-10-11 10:20:00', 'Realizada', 15, 4);
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-10-10 06:45:00', 'Cancelada', 16, 3);
+-- Inserção de dados tabela Exame
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Hemograma', 'Normal', 3);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Ultrassonografia', 'Sem alterações significativas', 9);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Ressonância Magnética', 'Resultado aguardando análise', 8);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Raio-X', 'Fratura identificada', 10);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Tomografia', 'Sem anomalias', 18);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Ecocardiograma', 'Leve irregularidade', 19);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Endoscopia', 'Presença de úlcera', 20);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Colonoscopia', 'Pólipo identificado e removido', 21);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Exame de Sangue', 'Níveis normais', 22);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Teste de Glicose', 'Diabetes detectada', 23);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Eletrocardiograma', 'Padrão normal', 28);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Holter 24 horas', 'Ritmo cardíaco estável', 29);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Exame de Urina', 'Sem anomalias', 30);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Cintilografia Óssea', 'Resultado aguardando análise', 37);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Densitometria Óssea', 'Osteoporose detectada', 38);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Mamografia', 'Nódulo identificado', 39);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Papanicolau', 'Normal', 40);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Teste de Gravidez', 'Positivo', 41);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Colesterol Total', 'Elevado', 43);
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Dosagem de PSA', 'Níveis normais', 44);
+-- Inserções na tabela Setor
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Cardiologia', 'Atendimento a pacientes com problemas cardíacos');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Ortopedia', 'Tratamento de doenças e lesões no sistema musculoesquelético');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Pediatria', 'Cuidados de saúde para crianças');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Ginecologia', 'Saúde da mulher, especialmente do sistema reprodutivo');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Neurologia', 'Diagnóstico e tratamento de doenças do sistema nervoso');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Oncologia', 'Tratamento de câncer');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Urologia', 'Doenças do trato urinário e sistema reprodutivo masculino');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Dermatologia', 'Tratamento de doenças de pele');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Psiquiatria', 'Saúde mental e tratamento de transtornos psiquiátricos');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Endocrinologia', 'Tratamento de distúrbios hormonais');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Otorrinolaringologia', 'Tratamento de doenças do ouvido, nariz e garganta');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Pneumologia', 'Doenças dos pulmões e do sistema respiratório');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Angiologia', 'Tratamento de doenças vasculares');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Radiologia', 'Imagens médicas para diagnóstico');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Nutrição', 'Aconselhamento nutricional e tratamento de distúrbios alimentares');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Fisioterapia', 'Reabilitação física');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Odontologia', 'Cuidados dentários e tratamentos odontológicos');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Genética', 'Estudo dos genes e hereditariedade');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Farmácia', 'Distribuição de medicamentos e aconselhamento farmacêutico');
+INSERT INTO Setor (NomeSetor, Descricao) 
+VALUES ('Cirurgia Geral', 'Procedimentos cirúrgicos gerais');
+-- Inserções na tabela Medico_Setor
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (1, 1);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (2, 2);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (3, 3);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (4, 4);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (5, 5);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (6, 6);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (7, 7);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (8, 8);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (14, 9);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor)
+VALUES (17, 10);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (18, 11);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (19, 12);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (20, 13);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (29, 14);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (30, 15);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (30, 12);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (32, 17);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (33, 18);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (35, 19);
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor) 
+VALUES (36, 20);
+-- Inserções na tabela Consulta_Setor
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (3, 4);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor)
+VALUES (8, 2);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (9, 3);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (10, 4);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (18, 5);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (19, 6);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (20, 7);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (21, 8);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor)
+VALUES (22, 9);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (23, 10);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (28, 11);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (29, 12);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor)
+VALUES (30, 13);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (37, 14);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (38, 15);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (39, 16);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (40, 17);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (41, 18);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (44, 19);
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor) 
+VALUES (43, 20);
+--CRUD na tabela Paciente
+INSERT INTO Paciente (Nome, DataNascimento, Genero, Rua, Cidade, Estado, NumeroProntuario)
+VALUES ('João Silva', '1990-05-15', 'Masculino', 'Rua Floriano Peixoto', 'Franca', 'SP', 1901);
+SELECT * FROM Paciente;
+SELECT * FROM Paciente WHERE ID_Paciente = 13;
+UPDATE Paciente
+SET Genero = 'Feminino', Rua = 'Rua General Osorio'
+WHERE ID_Paciente = 5;
+DELETE FROM Paciente WHERE ID_Paciente = 24;
+--CRUD na tabela Medico
+INSERT INTO Medico (Nome, Especialidade, CRM, Telefone, Email)
+VALUES ('Dr. Oliveira', 'Cardiologista', '17345', '(11) 1234-5678', 'oliveira@example.com');
+SELECT * FROM Medico;
+SELECT * FROM Medico WHERE Especialidade = 'Ortopedia';
+UPDATE Medico
+SET Telefone = '(11) 9876-5432', Email = 'oliveira_novo@example.com'
+WHERE ID_Medico = 41;
+DELETE FROM Medico WHERE ID_Medico = 41;
+--CRUD na tabela Consulta
+INSERT INTO Consulta (DataHora, Status, ID_Paciente, ID_Medico)
+VALUES ('2023-11-10 14:30:00', 'Confirmada', 20, 6);
+SELECT * FROM Consulta;
+SELECT * FROM Consulta WHERE Status = 'Realizada';
+UPDATE Consulta
+SET Status = 'Confirmada'
+WHERE ID_Consulta = 19;
+DELETE FROM Consulta WHERE ID_Consulta = 46;
+--CRUD na tabela Exame
+INSERT INTO Exame (TipoExame, Resultado, ID_Consulta)
+VALUES ('Hemograma', 'Normal', 9);
+SELECT * FROM Exame;
+SELECT * FROM Exame WHERE Resultado = 'normal';
+UPDATE Exame
+SET Resultado = 'Normal'
+WHERE ID_Exame = 6;
+DELETE FROM Exame WHERE ID_Exame = 21;
+--CRUD na tabela Setor
+INSERT INTO Setor (NomeSetor, Descricao)
+VALUES ('Emergência', 'Setor de atendimento de emergência.');
+SELECT * FROM Setor;
+SELECT * FROM Setor WHERE NomeSetor = 'Cardiologia';
+UPDATE Setor
+SET NomeSetor = 'UTI'
+WHERE ID_Setor = 9;
+DELETE FROM Setor WHERE ID_Setor = 21;
+--CRUD na tabela Medico_Setor
+INSERT INTO Medico_Setor (ID_Medico, ID_Setor)
+VALUES (14, 1);
+SELECT * FROM Medico_Setor;
+SELECT * FROM Medico_Setor WHERE ID_Setor = 1;
+UPDATE Medico_Setor
+SET ID_Setor = 2
+WHERE ID_Medico = 1;
+DELETE FROM Medico_Setor WHERE ID_Medico = 1;
+--CRUD na tabela Consulta_Setor
+INSERT INTO Consulta_Setor (ID_Consulta, ID_Setor)
+VALUES (22, 10);
+SELECT * FROM Consulta_Setor;
+SELECT * FROM Consulta_Setor WHERE ID_Setor = 10;
+UPDATE Consulta_Setor
+SET ID_Setor = 5
+WHERE ID_Consulta = 22;
+DELETE FROM Consulta_Setor WHERE ID_Consulta = 22;
+--Utilizando seleção e filtro
+SELECT * FROM Consulta ORDER BY DataHora;
+
+SELECT Paciente.Nome, Consulta.*
+FROM Paciente
+JOIN Consulta ON Paciente.ID_Paciente = Consulta.ID_Paciente;
+
+SELECT Consulta.*, Medico.Nome as NomeMedico, Paciente.Nome as NomePaciente
+FROM Consulta
+JOIN Medico ON Consulta.ID_Medico = Medico.ID_Medico
+JOIN Paciente ON Consulta.ID_Paciente = Paciente.ID_Paciente;
+
+SELECT Exame.*, Consulta.*
+FROM Exame
+JOIN Consulta ON Exame.ID_Consulta = Consulta.ID_Consulta;
+
+SELECT Paciente.Nome, Consulta.*, Setor.NomeSetor
+FROM Paciente
+JOIN Consulta ON Paciente.ID_Paciente = Consulta.ID_Paciente
+JOIN Consulta_Setor ON Consulta.ID_Consulta = Consulta_Setor.ID_Consulta
+JOIN Setor ON Consulta_Setor.ID_Setor = Setor.ID_Setor;
+
+SELECT DISTINCT Paciente.Nome, Consulta.*
+FROM Paciente
+JOIN Consulta ON Paciente.ID_Paciente = Consulta.ID_Paciente
+JOIN Exame ON Consulta.ID_Consulta = Exame.ID_Consulta;
+
+SELECT Medico.*, Setor.NomeSetor
+FROM Medico
+JOIN Medico_Setor ON Medico.ID_Medico = Medico_Setor.ID_Medico
+JOIN Setor ON Medico_Setor.ID_Setor = Setor.ID_Setor
+WHERE Setor.NomeSetor = 'Cardiologia';
+
+SELECT Paciente.ID_Paciente, COUNT(Consulta.ID_Paciente) as NumeroConsultas
+FROM Paciente
+JOIN Consulta ON Paciente.ID_Paciente = Consulta.ID_Paciente
+GROUP BY Paciente.ID_Paciente
+HAVING COUNT(Consulta.ID_Paciente) > 1;
+select * from Paciente
+
+SELECT Paciente.Nome, Paciente.Genero as NomePaciente, Medico.Nome as NomeMedico
+FROM Paciente
+JOIN Consulta ON Paciente.ID_Paciente = Consulta.ID_Paciente
+JOIN Medico ON Consulta.ID_Medico = Medico.ID_Medico
+ORDER BY NomePaciente;
+
+SELECT Setor.NomeSetor, COUNT(Medico_Setor.ID_Medico) as QuantidadeMedicos
+FROM Setor
+LEFT JOIN Medico_Setor ON Setor.ID_Setor = Medico_Setor.ID_Setor
+GROUP BY Setor.NomeSetor;
