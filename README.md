@@ -12,5 +12,9 @@
   Nome do setor e Descrição</p>
 <h2 align="center">Modelagem Conceitual</h2>
 <h1 align="center">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/banner.png" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./1.PNG" />
+</h1>
+<h2 align="center">Modelagem Lógica</h2>
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./2.PNG" />
 </h1>
