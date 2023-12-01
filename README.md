@@ -35,3 +35,8 @@
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./12.PNG" />
 </h1>
 <h2 align="center">CRUD</h2>
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./13.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./14.PNG" />
+</h1>
+<h2 align="center">Relatórios</h2>
