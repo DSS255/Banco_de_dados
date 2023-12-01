@@ -40,3 +40,15 @@
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./14.PNG" />
 </h1>
 <h2 align="center">Relatórios</h2>
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./15.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./16.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./17.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./18.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./19.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./20.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./21.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./22.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./23.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./24.PNG" />
+</h1>
