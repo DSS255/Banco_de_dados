@@ -25,3 +25,13 @@
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./5.PNG" />
 </h1>
 <h2 align="center">Dados</h2>
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./6.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./7.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./8.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./9.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./10.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./11.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./12.PNG" />
+</h1>
+<h2 align="center">CRUD</h2>
