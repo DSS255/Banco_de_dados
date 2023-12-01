@@ -18,3 +18,10 @@
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./2.PNG" />
 </h1>
+<h2 align="center">Modelagem Física</h2>
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./3.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./4.PNG" />
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./5.PNG" />
+</h1>
+<h2 align="center">Dados</h2>
